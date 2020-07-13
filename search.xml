@@ -2,11 +2,11 @@
 <search>
   <entry>
     <title>Github+Hexo+nexT 搭建个人博客避坑指南</title>
-    <url>/%E4%B8%87%E8%8A%B1%E7%AD%92/Github-Hexo-nexT-%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E9%81%BF%E5%9D%91%E6%8C%87%E5%8D%97/</url>
+    <url>/posts/3329381673.html</url>
     <content><![CDATA[<p>网上搭建Github+Hexo+nexT搭建个人博客的教程有很多，但是在我个人搭建的过程中还是遇到了不少问题，特此记录，以免更多的人踩坑！</p>
 <h2 id="第一个坑：404-File-not-found"><a href="#第一个坑：404-File-not-found" class="headerlink" title="第一个坑：404 File not found"></a>第一个坑：404 File not found</h2><p><img src="https://wx1.sinaimg.cn/mw690/a6facf89ly1ggi9hf1g6hj208c05iaab.jpg" alt="1"></p>
 <p>这个坑是我踩到的第一个坑，也是最让人抓狂的一个坑！因为即使使用next的默认设置，home和archives点进去也是404！看着官方文档，一开始以为是因为子目录问题，验证后发现不是。后来以为是版本太新，回滚了一个版本，发现还是不对！后来在知乎上发现了这个<a href="https://www.zhihu.com/question/353097489/answer/888107103" target="_blank" rel="noopener">解决方案</a>, 原来是空格问题：/ || 变成  /||就能解决404问题。在搜索答案的过程中，发现还有一些这样的细节问题，比如冒号后面必须有空格，这些小问题真让人抓狂。</p>
-<h2 id="第二个坑：-其它菜单配置问题"><a href="#第二个坑：-其它菜单配置问题" class="headerlink" title="第二个坑： 其它菜单配置问题"></a>第二个坑： 其它菜单配置问题</h2><p>nexT有两个默认的home和archives菜单，但是其它的菜单about、tag等都不是默认的，需要手动配置（如果不配置还是会遇到404问题），但是官网上并没有具体说明。这个后来找到了这个<a href="[https://linlif.github.io/2017/05/27/Hexo%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE/](https://linlif.github.io/2017/05/27/Hexo使用攻略-添加分类及标签/)">解决方案</a> 去处理，这个坑网上解决方案还是挺多的。</p>
+<h2 id="第二个坑：-其它菜单配置问题"><a href="#第二个坑：-其它菜单配置问题" class="headerlink" title="第二个坑： 其它菜单配置问题"></a>第二个坑： 其它菜单配置问题</h2><p>nexT有两个默认的home和archives菜单，但是其它的菜单about、tag等都不是默认的，需要手动配置（如果不配置还是会遇到404问题），但是官网上并没有具体说明。这个后来找到了这个<a href="[https://linlif.github.io/2017/05/27/Hexo%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE/](https://linlif.github.io/2017/05/27/Hexo使用攻略-添加分类及标签/">解决方案</a>) 去处理，这个坑网上解决方案还是挺多的。</p>
 <h2 id="常用的hexo命令"><a href="#常用的hexo命令" class="headerlink" title="常用的hexo命令"></a>常用的hexo命令</h2><ul>
 <li>hexo new ‘文章标题’ # 在blog路径下，新建一个md文档创作吧</li>
 <li>hexo new draft ‘文章标题’ # 文章暂时不发布，先保存在草稿箱</li>
@@ -19,6 +19,7 @@
 </ul>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.jianshu.com/p/9f0e90cc32c2" target="_blank" rel="noopener">动态背景、github关联、文章结束、网站访问量</a></p>
 <p><a href="https://www.jianshu.com/p/efbeddc5eb19" target="_blank" rel="noopener">字数统计、更新时间、代码复制、文章加密</a></p>
+<p><a href="https://blog.csdn.net/yexiaohhjk/article/details/82526604" target="_blank" rel="noopener">数学公式修改</a></p>
 <p><a href="https://tding.top/archives/ed8b904f.html" target="_blank" rel="noopener">评论</a></p>
 <ul>
 <li><a href="https://leeguoo.com/" target="_blank" rel="noopener">https://leeguoo.com/</a> 网盘 wiki 搜索添加</li>
@@ -28,13 +29,13 @@
 <li><a href="https://www.zhihu.com/question/30911258" target="_blank" rel="noopener">https://www.zhihu.com/question/30911258</a> 知乎上一些有意思的插件</li>
 <li>换电脑 请参考这篇文章：<a href="https://formulahendry.github.io/2016/12/04/hexo-ci/" target="_blank" rel="noopener">https://formulahendry.github.io/2016/12/04/hexo-ci/</a></li>
 </ul>
-<h1 id="通过比例辅助判断，具有这个前项的id，他的后项占比多少"><a href="#通过比例辅助判断，具有这个前项的id，他的后项占比多少" class="headerlink" title="通过比例辅助判断，具有这个前项的id，他的后项占比多少"></a>通过比例辅助判断，具有这个前项的id，他的后项占比多少</h1><p>a  <em>c</em> ac d ab</p>
-<p>cd d改成B（并不一定要最小，不然直接是n） <em>B</em> bc ac(改成BCD)</p>
+<h1 id="通过比例辅助判断，具有这个前项的id，他的后项占比多少"><a href="#通过比例辅助判断，具有这个前项的id，他的后项占比多少" class="headerlink" title="通过比例辅助判断，具有这个前项的id，他的后项占比多少"></a>通过比例辅助判断，具有这个前项的id，他的后项占比多少</h1><p>a  _c_ ac d ab</p>
+<p>cd d改成B（并不一定要最小，不然直接是n） _B_ bc ac(改成BCD)</p>
 <p>leanCloud XWFaxx163.com</p>
 <p>列表拆分多列 <a href="https://blog.csdn.net/u011412768/article/details/94347640" target="_blank" rel="noopener">https://blog.csdn.net/u011412768/article/details/94347640</a></p>
 ]]></content>
       <categories>
-        <category>万花筒</category>
+        <category>uncategorized</category>
       </categories>
       <tags>
         <tag>hexo</tag>
@@ -42,19 +43,98 @@
       </tags>
   </entry>
   <entry>
-    <title>主成分分析-PCA</title>
-    <url>/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90-PCA/</url>
-    <content><![CDATA[]]></content>
+    <title>机器学习|降维之主成分分析（PCA）</title>
+    <url>/posts/pca.html</url>
+    <content><![CDATA[<p>在这个大数据时代，我们能采集到成千上万的特征数据，甚至通过特征工程构建更多的特征数据，这时候数据压缩就显的非常有必要了。压缩后的数据可以占用更少的计算机内存或磁盘空间，同时也有利于加速学习算法，甚至有利于可视化，增强可解释性。</p>
+<p>降维，顾名思义：就是将高维数据降到低维。但是，维度降低了，信息不也损失了吗（虽然实际数据本身常常存在的相关性）？那么怎么才能让信息损失的尽可能少呢？甚至是剔除冗余信息，精炼我们的数据呢？主成分分析（Principal Component Analysis，PCA）便应用而生了：PCA把具有可能具有相关性的高维变量合成线性无关的低维向量，称为主成分。新的低维数据集会尽可能的保留原始数据的变量。</p>
+<h2 id="白话PCA-鱼和熊掌可以兼得吗"><a href="#白话PCA-鱼和熊掌可以兼得吗" class="headerlink" title="白话PCA - 鱼和熊掌可以兼得吗"></a>白话PCA - 鱼和熊掌可以兼得吗</h2><p>PCA相比于其它的算法，涉及到的数学知识还是蛮多的。网上关于PCA的文章虽然有很多，但数学味儿太浓了（还是陡峭的高等数学），一般人理解起来还是很困难的。但是数学就不能一种更好的方式呈现出来吗？那你一定没看过<a href="https://space.bilibili.com/88461692/channel/detail?cid=9450" target="_blank" rel="noopener">3Blue1Brown</a> 的线性代数课程吧？去看看吧，这是我听过最棒的一门数学课程！如果早点听了这门课，大学线代竞赛也不至于是二等奖了吧？哈哈哈哈</p>
+<p>幸运的是，我在网上也看到一篇很有内味儿的<a href="http://blog.codinglabs.org/articles/pca-tutorial.html" target="_blank" rel="noopener">PCA</a>文章，对PCA的概念有点模糊时，我就拿来看一下。这一次，我结合这篇文章，尝试以一个更通俗的方式来阐述PCA的工作原理。从我们非常熟悉的考试成绩入手吧，请看下面我伪造的一个班级学生的期中考试成绩单：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>学生ID</th>
+<th>语文</th>
+<th>数学</th>
+<th>英语</th>
+<th>物理</th>
+<th>化学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>90</td>
+<td>143</td>
+<td>111</td>
+<td>92</td>
+<td>78</td>
+</tr>
+<tr>
+<td>2</td>
+<td>90</td>
+<td>110</td>
+<td>123</td>
+<td>81</td>
+<td>88</td>
+</tr>
+<tr>
+<td>3</td>
+<td>90</td>
+<td>82</td>
+<td>108</td>
+<td>55</td>
+<td>85</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>m</td>
+<td>90</td>
+<td>128</td>
+<td>99</td>
+<td>85</td>
+<td>63</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>仅仅根据这份数据，如果让你预测下这些学生期末考试的成绩排名，你怎么做？一个常见的思路是直接把这些学生的期中考试成绩加起来，用期中的考试成绩排名直接作为期末成绩排名的预测。没毛病，这是时间序列分析的一个基本思想。但是有必要把这些成绩都加起来吗？这还仅仅是一个五维的数据，也仅仅通过一个“加法”算法，所以对计算机的存储或者算法的运行效率并没有影响。但如果是成千上万，甚至上亿维的数据，需要矩阵运算、梯度等复杂运算的算法时，计算机还能hold住吗？</p>
+<p>这时候降维就非常有必要了，观察上面的成绩数据，我们发现所有人的语文成绩竟然都是90分！那么语文成绩对我们预测期末成绩排名就没有任何用处了，对算法来说，这是完全冗余的信息，可以将这个特征直接剔除！再者，我们也很容易发现数学成绩和物理成绩是比较相关的，那么预测期末考试的成绩排名有必要直到这两门课的成绩呢？好像也没必要，知道一门或者把两门成绩组合成一门就行了。通过这么一处理，我们是不是已经把5维特征变成3维特征了？语文成绩的处理方法是一种叫着方差分析的特征选择方法，而物理成绩和数学成绩合并成一个特征就是我们要说的PCA了！</p>
+<p>那么PCA是怎么将物理成绩和数学成绩组合成一个特征？这其中又有多少信息损失呢？如何度量损失信息的多少呢？</p>
+<p>这个算法的学习，我也是反反复复，经历了很长时间。我对PCA的理解，主要基于这篇文章，既</p>
+<h2 id="PCA-知其然知其所以然"><a href="#PCA-知其然知其所以然" class="headerlink" title="PCA 知其然知其所以然"></a>PCA 知其然知其所以然</h2><p>PCA从本质上来说是通过线性变换将原始数据变换为一组各维度线性无关的表示，这些线性无关的表示即为原始数据的主要特征分量。</p>
+<p>PCA的损失函数可以概述为：找出能够最小化投影距离的方式。</p>
+<p>这个和支持向量机有什么不同呢？支持向量机只计算距离支撑向量最近的点，而PCA是计算所有的点</p>
+<h2 id="PCA-Q-amp-A"><a href="#PCA-Q-amp-A" class="headerlink" title="PCA Q&amp;A"></a>PCA Q&amp;A</h2><p><strong>Q1:</strong> PCA、线性回归、支持向量机区别在哪里？</p>
+<p><strong>A1：</strong>首先，PCA是一种无监督学习算法，通常用于数据预处理，而线性回归和支持向量机是有监督学习算法，通常用于预测；其次，PCA的损失函数是最小化所有数据点到投影面的投影距离（点垂直于投影面），线性回归的损失函数是最小化所有数据点到决策边界的平方误差（点不垂直于决策面），至于支持向量机，它的损失函数只计算距离支撑向量最近点的损失</p>
+<p><strong>Q2:</strong> 在使用PCA算法有什么需要注意的吗？</p>
+<p><strong>A2:</strong> 在进行PCA之前，一定不要忘记进行特征缩放/均值标准化</p>
+<h2 id="PCA脑洞"><a href="#PCA脑洞" class="headerlink" title="PCA脑洞"></a>PCA脑洞</h2><ul>
+<li>高维数据探索和可视化</li>
+<li>数据预处理</li>
+</ul>
+<p>算法工程师有必要推导算法吗</p>
+<p>算法工具包，就如屠龙宝刀一样，有的人拿它切菜，有的人拿它称霸武林，而有的人却”毁”了它，拿到了《武穆遗书》，统兵百万！</p>
+<p>个不懂算法原理的调包侠就像一个</p>
+<p>明白算法原理的算法工程师更像一个有经验的医生</p>
+]]></content>
       <categories>
-        <category>机器学习</category>
+        <category>uncategorized</category>
       </categories>
       <tags>
         <tag>PCA</tag>
       </tags>
   </entry>
   <entry>
-    <title>聚类</title>
-    <url>/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95-kmeans/</url>
+    <title>机器学习|聚类算法之k-means</title>
+    <url>/posts/kmeans.html</url>
     <content><![CDATA[<h2 id="白话k-means算法"><a href="#白话k-means算法" class="headerlink" title="白话k-means算法"></a>白话k-means算法</h2><p>我们常说：物以类聚，人以群分。这个 “类” 和 “群”怎么理解呢？从文字上扣一下：“类”指具有某些<strong>共同性质</strong>的对象。<del>计算机的，“类”是指对现实生活中一类<strong>具有共同特征</strong>的事物的抽象</del>。 “群”本义指牲畜聚合一处，泛指同类相聚。无论是”类“或”群“，他们都带有一些<strong>共同特征</strong>的味道。这在生活中也很常见：相似的人更容易玩到一块儿！</p>
 <p>那么从数学上怎么刻画这种相似呢？怎么把相似的事物或人聚到一起呢？聚成几类呢？让我们带着这些疑问一起来看看大名鼎鼎的k-means算法吧！</p>
 <p>k-means算法就是将一堆没有打标签的数据集聚类成不同的组（簇）。它的原理还是比较简单的，也比较容易理解。概括来说，就两步：</p>
@@ -63,14 +143,14 @@
 <li>随机在数据集中选择k（即聚成k个类别）个聚类中心（直接选择数据集中的数据点，这k个点即为初始的簇）；</li>
 <li>计算数据集中其余每个点到这k个聚类中心点的距离，将距离每个聚类中心的最近的点分配给这个簇，这便完成了一次簇分配（思考一下：每一次簇分配都会分配一个数据点吗？）</li>
 </ul>
-<p><strong>Step2: ** **移动聚类中心</strong></p>
+<p><strong>Step2: </strong> <strong>移动聚类中心</strong></p>
 <ul>
 <li>计算每一个簇的平均值，将该平均值作为该簇新的聚类中心。</li>
 </ul>
 <p>迭代<strong>Step1</strong> 和<strong>Step2</strong>, 直至聚类中心不再发生变化或达到指定迭代次数。</p>
 <p>k-means 算法几乎没涉及到任何高等数学知识，还是比较容易理解的。另外，很容易发现：这和我们以前介绍的有监督学习明显不同：在这里，我们不需要标签数据（打标签通常是一个非常耗费人力的过程），算法自己从数据中学习，自己发现数据中的规律或者模式，极大的减少了人工的参与。这就是机器学习中常说的无监督学习。当然 ，kmeans只是一种比较简单并且普及的聚类算法，聚类算法还是有很多的：比如基于密度的聚类方法DBSCAN、层次聚类算法等</p>
 <h2 id="k-means知其然知其所以然"><a href="#k-means知其然知其所以然" class="headerlink" title="k-means知其然知其所以然"></a>k-means知其然知其所以然</h2><p>其实一直没有想过k-means也是有代价函数的，一直以为代价函数是有监督学习算法专属的。k-means直接簇划分，簇类中心移动，迭代就行了，要什么代价函数。这次听NG的机器学习课程才意识到k-means也是有代价函数的，只是这个代价函数和有监督学习刻画真实值与预测值之间的代价不同，k-means的代价函数是<strong>最小化所有数据点与其所关联的聚类中心之间的距离之和</strong>，数学形式如下：</p>
-<p>$J(c^{(1)},…,c^{(m)},\mu_1,…,\mu_k) = \frac{1}{m}\sum_{i=1}^m||x^{(i)}-\mu_{c^{(i)}}||^2$  s.t. $1&lt;k&lt;m$</p>
+<p>$J(c^{(1)},…,c^{(m)},\mu_1,…,\mu_k) = \frac{1}{m}\sum_{i=1}^m||x^{(i)}-\mu_{c^{(i)}}||^2 $    s.t.    $1&lt;k&lt;m$ </p>
 <p>其中 $\mu_{c^{(i)}}$ 表示与 $x^{(i)}$ 最近的聚类中心点，优化目标是找出使得代价函数最小的 $c^{(1)},…,c^{(m)}$ 和$\mu_1,…,\mu_k$ 。但是这里面的最小是指 $k$ 选择了一个特定的值之后最小。不然在极端情况下，每个样本都归属于一个类别，这样代价函数最小，但是没有什么实际意义。</p>
 <p>k-means算法中，<strong>Step1</strong> 的簇分配便是为了用于减小c(i)引起的代价（选择距离聚类中心最近的点分配给这个簇类）；<strong>Step2</strong> 的聚类中心计算便是为了用于减小μ(i)引起的代价（还不是很理解）。总之，迭代的过程一定会是每一次迭代都在减小代价函数，不然便是出现了错误。</p>
 <p>明白了k-means算法的运行原理后，程序编写起来相对也比较简单。主要实现两个功能：簇分配和聚类中心计算。按照代码编写逻辑：首先确定入参和出参，然后模块拆分，最后模块组合。</p>
@@ -86,7 +166,6 @@
 <li>簇分类： 可以用一个循环将每个点分配到 $k$ 个簇类，然后用$c^{(1)},…,c^{(m)}$存储与第 $i$ 个数据点最近簇类中心的索引，伪码如下：（也可以用向量化的方式实现）</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i=<span class="number">1</span> to m:</span><br><span class="line">    c(i) = index (<span class="keyword">from</span> <span class="number">1</span> to k) of cluster centroid closest to x(i)</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>簇类中心计算：同样也可以用一个循环实现k个簇类中心的更新，用 $\mu_1,…,\mu_k$ 表示k个聚类中心</li>
 </ul>
@@ -96,17 +175,16 @@
 </li>
 </ol>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 整体流程</span></span><br><span class="line">选择K个点作为初始质心  </span><br><span class="line">repeat  </span><br><span class="line">    将每个点指派到最近的质心，形成K个簇  </span><br><span class="line">    重新计算每个簇的质心  </span><br><span class="line">until 簇不发生变化或达到最大迭代次数 </span><br><span class="line"></span><br><span class="line"><span class="comment"># μ(1),μ(2),...,μ(k)表示聚类中心，c(1),c(2),...,c(m)来存储与第 𝑖个实例数据最近的聚类中</span></span><br><span class="line">心的索引</span><br><span class="line">Repeat &#123;</span><br><span class="line"><span class="comment"># 用于减小c(i)引起的代价</span></span><br><span class="line"><span class="keyword">for</span> i=<span class="number">1</span> to m:</span><br><span class="line">    c(i) = index (<span class="keyword">from</span> <span class="number">1</span> to k) of cluster centroid closest to x(i)</span><br><span class="line"><span class="comment"># 用于减小μ(i)引起的代价</span></span><br><span class="line"><span class="keyword">for</span> k=<span class="number">1</span> to K:</span><br><span class="line">    u(k) = mean of points assigned to cluster k</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="k-means问题集锦"><a href="#k-means问题集锦" class="headerlink" title="k-means问题集锦"></a>k-means问题集锦</h2><p>以下的<strong>Q&amp;A</strong>涉及到k-means算法中的聚类中心初始化、算法局部最优、聚类k的选择等问题</p>
 <p><strong>Q1</strong>： 如何初始化聚类中心？初始化聚类中心的时候有什么需要注意吗</p>
 <p><strong>A1</strong>:   直接选择数据中的点做为初始的聚类中心，初始点之间距离应该尽量远</p>
 <p><strong>Q2</strong>： k-means 有可能会停留在局部最小值处吗？如何理解这种局部最优？什么情况下会陷在局部最小？可以解决吗？</p>
-<p><strong>A2</strong>:  很有可能停留在局部最优处的, k-means的局部最优从工程效果角度来说，就是聚类后各个类别的差距很大，有的类别有大量的数据点（这可能是把几个簇合并成一个簇了），有的类别只有几个，甚至有的类别为0个（这可能是把一个簇拆分成几个簇了）。这种局部最优通常是随机初始化时，初始点之间距离太近导致的。所以为了解决这种问题，通常是将初始中心点设置的远一点，并且可通过多次初始化不同的中心点，多次运行算法，然后选择代价函数较小的最为最终的聚类结果。这种方法在 𝐾较小的时候（ 2–10）还是可行的，但是如果 𝐾较大，这么做也可能不会有明显地改善。</p>
+<p><strong>A2</strong>:  很有可能停留在局部最优处的, k-means的局部最优从工程效果角度来说，就是聚类后各个类别的差距很大，有的类别有大量的数据点（这可能是把几个簇合并成一个簇了），有的类别只有几个，甚至有的类别为0个（这可能是把一个簇拆分成几个簇了）。这种局部最优通常是随机初始化时，初始点之间距离太近导致的。所以为了解决这种问题，通常是将初始中心点设置的远一点，并且可通过多次初始化不同的中心点，多次运行算法，然后选择代价函数较小的最为最终的聚类结果。这种方法在 𝐾较小的时候（ 2—10）还是可行的，但是如果 𝐾较大，这么做也可能不会有明显地改善。</p>
 <p><strong>Q3：</strong>如何选择一个合适的聚类数量？</p>
 <p><strong>A3：</strong> 没有所谓最好的选择聚类数的方法，通常是需要根据不同的问题，人工进行选择的。基本的准则是认清我们运用k-means算法聚类的动机是什么，然后选择能最好服务于该目的的聚类数。业界常用的一个参考方法是肘部法则，即改变k值，观察代价函数的变化，选择使得代价变化最快的一个k值作为聚类数量</p>
 <p><strong>Q4：</strong>如何衡量k-means算法的性能？</p>
 <p><strong>A4</strong>:  通常用轮廓系数，定义如下：</p>
-<p>$s(i) = \frac{b(i)-a(i)}{max{a(i),b{(i)}}}$</p>
+<p>$s(i) = \frac{b(i)-a(i)}{max\{a(i),b{(i)}\}}$</p>
 <p>其中 $a(i)$ 表示簇内不相似度，通过计算样本 $x_i$ 到同簇其他样本的平均距离获得，应尽可能小；$b_{ij}$ 表示簇间不相似度，通过计算样本 $x_i$ 到其它簇 $C_j$ 的所有样本的平均距离获得，应尽可能大。轮廓系数 $s(i)$ 值越接近 1表示样本 $i$ 聚类越合理，越接近 -1，表示样本  $i$应该分类到另外的簇中，近似为0，表示样本 $i$ 应该在边界上 ;所有样本的 𝑠(𝑖)的均值被成为聚类结果的轮廓系数。</p>
 <p>其它的均一性（精准率）、完整性（召回率）、V-measure和 ARI了解下即可，待需要深入的时候在研究下。</p>
 <h2 id="k-means实践"><a href="#k-means实践" class="headerlink" title="k-means实践"></a>k-means实践</h2><p>结合scikit-learn进行</p>
