@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="模糊匹配,FuzzyWuzzy,levenshtein," />
 
 
 
@@ -79,19 +79,18 @@
 
 
 
-<meta name="description" content="数据挖掘,数据分析,爬虫,机器学习,深度学习,自然语言处理的学习记录">
-<meta property="og:type" content="website">
-<meta property="og:title" content="机器之恋">
-<meta property="og:url" content="http://dhdsjy.github.io/categories/python/index.html">
+<meta name="description" content="常见模糊匹配算法调研及测试，包括FuzzyWuzzy、Levenshtein等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法|模糊匹配算法简单介绍">
+<meta property="og:url" content="http://dhdsjy.github.io/posts/fuzzy_algorithm.html">
 <meta property="og:site_name" content="机器之恋">
-<meta property="og:description" content="数据挖掘,数据分析,爬虫,机器学习,深度学习,自然语言处理的学习记录">
+<meta property="og:description" content="常见模糊匹配算法调研及测试，包括FuzzyWuzzy、Levenshtein等">
+<meta property="article:published_time" content="2020-07-14T03:13:55.000Z">
+<meta property="article:modified_time" content="2020-09-16T02:18:00.493Z">
 <meta property="article:author" content="Simon">
-<meta property="article:tag" content="数据挖掘">
-<meta property="article:tag" content="数据分析">
-<meta property="article:tag" content="爬虫">
-<meta property="article:tag" content="机器学习">
-<meta property="article:tag" content="深度学习">
-<meta property="article:tag" content="自然语言处理">
+<meta property="article:tag" content="模糊匹配">
+<meta property="article:tag" content="FuzzyWuzzy">
+<meta property="article:tag" content="levenshtein">
 <meta name="twitter:card" content="summary">
 
 
@@ -122,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://dhdsjy.github.io/categories/python/"/>
+  <link rel="canonical" href="http://dhdsjy.github.io/posts/fuzzy_algorithm.html"/>
 
 
 
 
 
-  <title>分类: python | 机器之恋</title>
+  <title>算法|模糊匹配算法简单介绍 | 机器之恋</title>
   
 
 
@@ -147,7 +146,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 	<a href="https://github.com/dhdsjy/" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -275,55 +274,306 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>python<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://dhdsjy.github.io/posts/fuzzy_algorithm.html">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Simon">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="机器之恋">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/posts/commandline.html" itemprop="url">
-              
-                <span itemprop="name">python|命令行参数argv、argparse和getopt使用</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">算法|模糊匹配算法简单介绍</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-07-13T16:49:21+08:00"
-              content="2020-07-13" >
-          07-13
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-14T11:13:55+08:00">
+                2020-07-14
+              </time>
+            
 
-    </header>
-  </article>
+            
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-09-16T10:18:00+08:00">
+                2020-09-16
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  575
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  常见模糊匹配算法调研及测试，包括FuzzyWuzzy、Levenshtein等
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="FuzzyWuzzy"><a href="#FuzzyWuzzy" class="headerlink" title="FuzzyWuzzy"></a>FuzzyWuzzy</h2><p> <a href="https://github.com/seatgeek/fuzzywuzzy" target="_blank" rel="noopener">FuzzyWuzzy</a>是一个第三方Python库，使用编辑距离（Levenshtein Distance）来计算序列之间的差异。目前是github上最流行的一个开源库，有各种语言版本。主要提供4中模糊匹配方法。</p>
+<p>difflib python自带，感觉功能不够强大，没有仔细研究。</p>
+<p><a href="https://github.com/ztane/python-Levenshtein/" target="_blank" rel="noopener">python-levenshtein</a> 可以快速计算编辑距离及字符串的相似性。FuzzyWuzzy中的编辑距离便是基于该模块计算。</p>
+<ul>
+<li><p>编辑距离：把一个字符串通过插入、删除或替换为另一个字符串，所需要的最少<strong>编辑次数</strong>。汉明距离是该距离的特例（等长）</p>
+<ul>
+<li><strong>Levenshtein.distance(str1, str2)</strong> 由一个字串转化成另一个字串最少的操作次数，在其中的操作包括插入、删除、替换, 每个操作计为1；</li>
+<li><strong>Levenshtein.ratio(str1, str2)</strong>  计算莱文斯坦比。 $r = \frac{sum-Ldist}{sum}$ ,其中sum是指str1 和 str2 字串的长度总和，ldist是<strong>类编辑距离</strong>, 其中 删除、插入类编辑距离记为+1，但是替换记为+2</li>
+<li><strong>Levenshtein.jaro(s1, s2)</strong> </li>
+<li><strong><a href="https://blog.csdn.net/frone/article/details/80080850" target="_blank" rel="noopener">Levenshtein.jaro_winkler(s1, s2)</a></strong>  有个专门的工具包jaro_winkler</li>
+</ul>
+</li>
+<li><p>Jaccard 距离</p>
+</li>
+<li>J-W距离</li>
+<li>余弦相似性 <a href="https://www.cnblogs.com/lishanyang/p/6016737.html" target="_blank" rel="noopener">https://www.cnblogs.com/lishanyang/p/6016737.html</a></li>
+<li>欧氏距离</li>
+</ul>
+<h2 id="应用实战"><a href="#应用实战" class="headerlink" title="应用实战"></a>应用实战</h2><p>直接安装FuzzyWuzzy，然后import时会有警告，提示安装python-levenshtein，这样可以加速算法。另外，这也扩展了FuzzyWuzzy的功能。比如process.extract()这个API， 我们 help(process.extract), 可知其接受5个参数，分别是：query,choices,processor,scorer,limit.  scorer默认使用fuzz.WRatio计算相似度，但是这并不一定是一个有效的相似度计算方法，我们可以通过使用python-levenshtein的一些方法进行计算</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">process.extractOne(<span class="string">'b02.200'</span>, [<span class="string">'a02.200'</span>,<span class="string">'b02.210'</span>,<span class="string">'b02.201'</span>],scorer=Levenshtein.jaro_winkler)</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/lys_828/article/details/106489371" target="_blank" rel="noopener">fuzzyWuzzy实战</a></p>
+<p><a href="https://blog.csdn.net/qq_22235017/article/details/80989366" target="_blank" rel="noopener">很有启发意义的中医数据编辑距离</a></p>
+<p><a href="https://www.jianshu.com/p/2daf3e57c68f" target="_blank" rel="noopener">fuzzyWuzzy</a></p>
+<p><a href="https://www.cnblogs.com/-wenli/p/11079173.html" target="_blank" rel="noopener">比较详细的一个中文介绍</a></p>
+<p><a href="https://blog.csdn.net/a2099948768/article/details/82219923" target="_blank" rel="noopener">Levenshtein API 比较详细的介绍</a></p>
+<p><a href="https://blog.csdn.net/shijing_0214/article/details/53100992" target="_blank" rel="noopener">各种字符串相似度计算</a></p>
+<p><a href="https://blog.csdn.net/qq_32447301/article/details/107269350" target="_blank" rel="noopener">java 版模糊匹配</a></p>
+<p>best fuzzywuzzy alternatives</p>
+<p><a href="https://zhuanlan.zhihu.com/p/30603995" target="_blank" rel="noopener">python文本自动摘要</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/45833152" target="_blank" rel="noopener">三行Python代码，让数据预处理速度提高2到6倍</a></p>
+<p><a href="https://help.alteryx.com/zh/current/designer/yonghujiemian" target="_blank" rel="noopener">一个模糊匹配工具</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/109016233" target="_blank" rel="noopener">python代码小技巧</a> <a href="https://zhuanlan.zhihu.com/p/135341571" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/135341571</a> </p>
+<p><a href="https://zhuanlan.zhihu.com/p/144875646" target="_blank" rel="noopener">python一些有趣的工具</a> <a href="https://www.codercto.com/a/115354.html" target="_blank" rel="noopener">https://www.codercto.com/a/115354.html</a></p>
+<p>豆瓣原真香 pip install -i <a href="https://pypi.douban.com/simple" target="_blank" rel="noopener">https://pypi.douban.com/simple</a> texthero</p>
 
       
     </div>
+    
+    
+    
+	
+	<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------End-------------</div>
+    
+</div>
+  
+</div>
+<div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/posts/fuzzy_algorithm.html">算法|模糊匹配算法简单介绍</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Simon 的个人博客">Simon</a></p>
+  <p><span>发布时间:</span>2020年07月14日 - 11:07</p>
+  <p><span>最后更新:</span>2020年09月16日 - 10:09</p>
+  <p><span>原始链接:</span><a href="/posts/fuzzy_algorithm.html" title="算法|模糊匹配算法简单介绍">http://dhdsjy.github.io/posts/fuzzy_algorithm.html</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://dhdsjy.github.io/posts/fuzzy_algorithm.html"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+    });
+    });  
+</script>
 
+      
+</div>
+    
+
+    
+
+    
+	
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%A8%A1%E7%B3%8A%E5%8C%B9%E9%85%8D/" rel="tag"># 模糊匹配</a>
+          
+            <a href="/tags/FuzzyWuzzy/" rel="tag"># FuzzyWuzzy</a>
+          
+            <a href="/tags/levenshtein/" rel="tag"># levenshtein</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/commandline.html" rel="next" title="python|命令行参数argv、argparse和getopt使用">
+                <i class="fa fa-chevron-left"></i> python|命令行参数argv、argparse和getopt使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/ML_anomaly_detection.html" rel="prev" title="机器学习|异常检测">
+                机器学习|异常检测 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -331,6 +581,12 @@
 
 
           
+  
+    <div class="comments" id="comments">
+      <div id="vcomments"></div>
+    </div>
+  
+
 
         </div>
         
@@ -351,8 +607,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -414,6 +679,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#FuzzyWuzzy"><span class="nav-number">1.</span> <span class="nav-text">FuzzyWuzzy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用实战"><span class="nav-number">2.</span> <span class="nav-text">应用实战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -585,6 +866,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 

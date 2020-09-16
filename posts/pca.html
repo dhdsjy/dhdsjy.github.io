@@ -85,11 +85,14 @@
 <meta property="og:url" content="http://dhdsjy.github.io/posts/pca.html">
 <meta property="og:site_name" content="机器之恋">
 <meta property="og:description" content="NG机器学习课程中关于PCA算法的理解及记录">
+<meta property="og:image" content="https://wx4.sinaimg.cn/mw690/a6facf89ly1ggziebcv3hj20kb0ip0t3.jpg">
+<meta property="og:image" content="https://wx4.sinaimg.cn/mw690/a6facf89ly1ggyunjwgxkj20g10f8q3o.jpg">
 <meta property="article:published_time" content="2020-07-10T11:41:05.000Z">
-<meta property="article:modified_time" content="2020-07-13T01:12:05.600Z">
+<meta property="article:modified_time" content="2020-07-22T12:28:06.814Z">
 <meta property="article:author" content="Simon">
 <meta property="article:tag" content="PCA">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wx4.sinaimg.cn/mw690/a6facf89ly1ggziebcv3hj20kb0ip0t3.jpg">
 
 
 
@@ -331,8 +334,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-07-13T09:12:05+08:00">
-                2020-07-13
+              <time title="更新于" itemprop="dateModified" datetime="2020-07-22T20:28:06+08:00">
+                2020-07-22
               </time>
             
           </span>
@@ -386,7 +389,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.5k
+                  2.3k
                 </span>
               
 
@@ -402,7 +405,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  8
                 </span>
               
             </div>
@@ -490,8 +493,18 @@
 <p>仅仅根据这份数据，如果让你预测下这些学生期末考试的成绩排名，你怎么做？一个常见的思路是直接把这些学生的期中考试成绩加起来，用期中的考试成绩排名直接作为期末成绩排名的预测。没毛病，这是时间序列分析的一个基本思想。但是有必要把这些成绩都加起来吗？这还仅仅是一个五维的数据，也仅仅通过一个“加法”算法，所以对计算机的存储或者算法的运行效率并没有影响。但如果是成千上万，甚至上亿维的数据，需要矩阵运算、梯度等复杂运算的算法时，计算机还能hold住吗？</p>
 <p>这时候降维就非常有必要了，观察上面的成绩数据，我们发现所有人的语文成绩竟然都是90分！那么语文成绩对我们预测期末成绩排名就没有任何用处了，对算法来说，这是完全冗余的信息，可以将这个特征直接剔除！再者，我们也很容易发现数学成绩和物理成绩是比较相关的，那么预测期末考试的成绩排名有必要直到这两门课的成绩呢？好像也没必要，知道一门或者把两门成绩组合成一门就行了。通过这么一处理，我们是不是已经把5维特征变成3维特征了？语文成绩的处理方法是一种叫着方差分析的特征选择方法，而物理成绩和数学成绩合并成一个特征就是我们要说的PCA了！</p>
 <p>那么PCA是怎么将物理成绩和数学成绩组合成一个特征？这其中又有多少信息损失呢？如何度量损失信息的多少呢？</p>
-<p>这个算法的学习，我也是反反复复，经历了很长时间。我对PCA的理解，主要基于这篇文章，既</p>
-<h2 id="PCA-知其然知其所以然"><a href="#PCA-知其然知其所以然" class="headerlink" title="PCA 知其然知其所以然"></a>PCA 知其然知其所以然</h2><p>PCA从本质上来说是通过线性变换将原始数据变换为一组各维度线性无关的表示，这些线性无关的表示即为原始数据的主要特征分量。</p>
+<p>先看一个简单的例子，如何将下面这个二维数据将为一维呢？我们可以直接将这些数据都投影到 $x$ 轴或者都投影到 $y$ 轴：投影到 $x$ 轴，最左边的2个点和中间的2个点都重叠在一起，这样在二维空间中4个各不相同的点降到一维空间只剩下2个不同的值了，这是一种严重的信息丢失；同样，如果映射到 $y$ 轴，最上面的2个点和中间的2个点也都重叠在一起。因此，$x$ 轴或者 $y$ 轴都不是一个好的选择。直观目测，如果向通过第一象限和第三象限的斜线投影，则五个点在投影后还是可以区分的。</p>
+<p><del>直观上理解：我们应该让降维后的数据尽量不要重合，互相隔的越远越好，这样才能保持信息尽量少的损失</del></p>
+<p><img src="https://wx4.sinaimg.cn/mw690/a6facf89ly1ggziebcv3hj20kb0ip0t3.jpg" alt="pca" style="zoom:67%;" /></p>
+<p>PCA可以这样简单的理解：</p>
+<p><del>这个算法的学习，我也是反反复复，经历了很长时间。我对PCA的理解，主要基于这篇文章，既</del></p>
+<h2 id="PCA-知其然知其所以然"><a href="#PCA-知其然知其所以然" class="headerlink" title="PCA 知其然知其所以然"></a>PCA 知其然知其所以然</h2><p>PCA从本质上来说是通过线性变换将原始数据变换为一组<strong>各维度线性无关</strong>的表示，这些线性无关的表示即为原始数据的主要特征分量。</p>
+<p>线性变换，可以将数据从一个空间（记为A空间）映射到另一个空间（记为B空间）。不同空间中的数据可以通过基和坐标唯一确定。如果PCA要实现降维，则线性变换后，基必须降低。所以线性变换的目的就是降维，那么这个线性变换如何表示呢？如果你看了<a href="https://space.bilibili.com/88461692/channel/detail?cid=9450" target="_blank" rel="noopener">3Blue1Brown</a> 的视频，很容易想到矩阵。在下图中黑色坐标系下 (基为(1,0)和(0,1))，向量 $\vec{p}$ 可表示为  $\vec{p}=(3,2 )$ , 那么向量 $\vec{p}$ 在蓝色坐标系下（基为(1,1)和(-1,1)）如何表示呢？其实这就是一种线性变换，将数据从一个空间变换到另一个空间，这可以通过矩阵获得（左边的矩阵是经过单位化的基矩阵）：</p>
+<p>$\left[ \begin{matrix} \frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}} \end{matrix} \right]$$\left[ \begin{matrix} 3 \\ 2 \end{matrix} \right]$ = $\left[ \begin{matrix} \frac{5}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}} \end{matrix} \right]$   </p>
+<p>该矩阵相乘的物理含义可这样理解：用B空间的基矩阵左乘A空间的数据点的向量表示即可获得该数据点在B空间的向量表示。所以变换后的向量 $\vec{p}$ 可表示为 $\vec{p}=(\frac{5}{\sqrt{2}},-\frac{1}{\sqrt{2}} )$ 。</p>
+<p><img src="https://wx4.sinaimg.cn/mw690/a6facf89ly1ggyunjwgxkj20g10f8q3o.jpg" alt="base" style="zoom:80%;" /></p>
+<p>如果想让线性变换后的维度降低，那么应该让基矩阵的维度降低。一般地，<strong>如果有M个N维向量，想将其变换为由R个N维向量表示的新空间中，那么首先将R个基按行组成矩阵A，然后将向量按列组成矩阵B，那么两矩阵的乘积AB就是变换结果，其中AB的第m列为A中第m列变换后的结果</strong> 。</p>
+<p>那么这个基矩阵如何选择呢？一个合适的基矩阵除了能降低原始数据的维度，还应该保证降维后损失的信息应该尽量少。如果要保证损失的信息尽量少，至少降维后的数据不能重合，如果能相互之间距离较远（数据点比较分散）</p>
 <p>PCA的损失函数可以概述为：找出能够最小化投影距离的方式。</p>
 <p>这个和支持向量机有什么不同呢？支持向量机只计算距离支撑向量最近的点，而PCA是计算所有的点</p>
 <h2 id="PCA-Q-amp-A"><a href="#PCA-Q-amp-A" class="headerlink" title="PCA Q&amp;A"></a>PCA Q&amp;A</h2><p><strong>Q1:</strong> PCA、线性回归、支持向量机区别在哪里？</p>
@@ -504,7 +517,7 @@
 </ul>
 <p>算法工程师有必要推导算法吗</p>
 <p>算法工具包，就如屠龙宝刀一样，有的人拿它切菜，有的人拿它称霸武林，而有的人却”毁”了它，拿到了《武穆遗书》，统兵百万！</p>
-<p>个不懂算法原理的调包侠就像一个</p>
+<p>一个不懂算法原理的调包侠就像一个</p>
 <p>明白算法原理的算法工程师更像一个有经验的医生</p>
 
       
@@ -534,7 +547,7 @@
   <p><span>本文标题:</span><a href="/posts/pca.html">机器学习|降维之主成分分析（PCA）</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Simon 的个人博客">Simon</a></p>
   <p><span>发布时间:</span>2020年07月10日 - 19:07</p>
-  <p><span>最后更新:</span>2020年07月13日 - 09:07</p>
+  <p><span>最后更新:</span>2020年07月22日 - 20:07</p>
   <p><span>原始链接:</span><a href="/posts/pca.html" title="机器学习|降维之主成分分析（PCA）">http://dhdsjy.github.io/posts/pca.html</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://dhdsjy.github.io/posts/pca.html"  aria-label="复制成功！"></i></span>
   </p>
@@ -671,7 +684,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -682,7 +695,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -693,7 +706,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -765,7 +778,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">5.4k</span>
+    <span title="Site words total count">7.2k</span>
   
 </div>
 
@@ -796,7 +809,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共5.4k字</span>
+  <span class="post-count">博客全站共7.2k字</span>
 </div>
         
 <div class="busuanzi-count">

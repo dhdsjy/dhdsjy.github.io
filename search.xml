@@ -12,27 +12,22 @@
 <li>hexo new draft ‘文章标题’ # 文章暂时不发布，先保存在草稿箱</li>
 <li>hexo publish [layout] ‘文章标题’ # 将草稿箱的文章发布出去</li>
 <li>hexo clean # 清除缓存文件(db.json)和已生成的静态文件(public)，一般对站点进行更改后（尤其是主题更换），需要运行此命令</li>
-<li>hexo g</li>
-<li>hexo s</li>
-<li>hexo d</li>
-<li></li>
+<li>hexo g (hexo generate) 生成</li>
+<li>hexo s (hexo server)  启动服务浏览</li>
+<li>hexo d (hexo deploy) 部署</li>
 </ul>
+<p>最常用的一组命令（在本地写完blog，部署到服务器上）：hexo clean -&gt; hexo g -&gt;hexo s -&gt; hexo d</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.jianshu.com/p/9f0e90cc32c2" target="_blank" rel="noopener">动态背景、github关联、文章结束、网站访问量</a></p>
 <p><a href="https://www.jianshu.com/p/efbeddc5eb19" target="_blank" rel="noopener">字数统计、更新时间、代码复制、文章加密</a></p>
 <p><a href="https://blog.csdn.net/yexiaohhjk/article/details/82526604" target="_blank" rel="noopener">数学公式修改</a></p>
-<p><a href="https://tding.top/archives/ed8b904f.html" target="_blank" rel="noopener">评论</a></p>
-<ul>
-<li><a href="https://leeguoo.com/" target="_blank" rel="noopener">https://leeguoo.com/</a> 网盘 wiki 搜索添加</li>
-<li>配置非常全面的一个文章 <a href="https://io-oi.me/tech/hexo-next-optimization/" target="_blank" rel="noopener">https://io-oi.me/tech/hexo-next-optimization/</a></li>
-<li>配置很全 <a href="https://www.simon96.online/2018/10/12/hexo-tutorial/" target="_blank" rel="noopener">https://www.simon96.online/2018/10/12/hexo-tutorial/</a></li>
-<li>喜欢这个作者的hexo <a href="https://tding.top/archives/567debe0.html" target="_blank" rel="noopener">https://tding.top/archives/567debe0.html</a></li>
-<li><a href="https://www.zhihu.com/question/30911258" target="_blank" rel="noopener">https://www.zhihu.com/question/30911258</a> 知乎上一些有意思的插件</li>
-<li>换电脑 请参考这篇文章：<a href="https://formulahendry.github.io/2016/12/04/hexo-ci/" target="_blank" rel="noopener">https://formulahendry.github.io/2016/12/04/hexo-ci/</a></li>
-</ul>
-<h1 id="通过比例辅助判断，具有这个前项的id，他的后项占比多少"><a href="#通过比例辅助判断，具有这个前项的id，他的后项占比多少" class="headerlink" title="通过比例辅助判断，具有这个前项的id，他的后项占比多少"></a>通过比例辅助判断，具有这个前项的id，他的后项占比多少</h1><p>a  _c_ ac d ab</p>
-<p>cd d改成B（并不一定要最小，不然直接是n） _B_ bc ac(改成BCD)</p>
+<p><a href="https://tding.top/archives/ed8b904f.html" target="_blank" rel="noopener">评论功能添加</a></p>
+<p><a href="https://leeguoo.com/" target="_blank" rel="noopener">网盘 wiki 搜索等功能添加</a></p>
+<p><a href="https://io-oi.me/tech/hexo-next-optimization/" target="_blank" rel="noopener">配置非常全面的一个文章 </a></p>
+<p><a href="https://www.simon96.online/2018/10/12/hexo-tutorial/" target="_blank" rel="noopener">配置很全</a></p>
+<p><a href="https://tding.top/archives/567debe0.html" target="_blank" rel="noopener">喜欢这个作者的hexo</a></p>
+<p><a href="https://www.zhihu.com/question/30911258" target="_blank" rel="noopener">知乎上一些有意思的插件</a></p>
+<p><a href="https://formulahendry.github.io/2016/12/04/hexo-ci/" target="_blank" rel="noopener">换电脑 请参考这篇文章</a></p>
 <p>leanCloud XWFaxx163.com</p>
-<p>列表拆分多列 <a href="https://blog.csdn.net/u011412768/article/details/94347640" target="_blank" rel="noopener">https://blog.csdn.net/u011412768/article/details/94347640</a></p>
 ]]></content>
       <categories>
         <category>万花筒</category>
@@ -43,93 +38,175 @@
       </tags>
   </entry>
   <entry>
-    <title>机器学习|降维之主成分分析（PCA）</title>
-    <url>/posts/pca.html</url>
-    <content><![CDATA[<p>在这个大数据时代，我们能采集到成千上万的特征数据，甚至通过特征工程构建更多的特征数据，这时候数据压缩就显的非常有必要了。压缩后的数据可以占用更少的计算机内存或磁盘空间，同时也有利于加速学习算法，甚至有利于可视化，增强可解释性。</p>
-<p>降维，顾名思义：就是将高维数据降到低维。但是，维度降低了，信息不也损失了吗（虽然实际数据本身常常存在的相关性）？那么怎么才能让信息损失的尽可能少呢？甚至是剔除冗余信息，精炼我们的数据呢？主成分分析（Principal Component Analysis，PCA）便应用而生了：PCA把具有可能具有相关性的高维变量合成线性无关的低维向量，称为主成分。新的低维数据集会尽可能的保留原始数据的变量。</p>
-<h2 id="白话PCA-鱼和熊掌可以兼得吗"><a href="#白话PCA-鱼和熊掌可以兼得吗" class="headerlink" title="白话PCA - 鱼和熊掌可以兼得吗"></a>白话PCA - 鱼和熊掌可以兼得吗</h2><p>PCA相比于其它的算法，涉及到的数学知识还是蛮多的。网上关于PCA的文章虽然有很多，但数学味儿太浓了（还是陡峭的高等数学），一般人理解起来还是很困难的。但是数学就不能一种更好的方式呈现出来吗？那你一定没看过<a href="https://space.bilibili.com/88461692/channel/detail?cid=9450" target="_blank" rel="noopener">3Blue1Brown</a> 的线性代数课程吧？去看看吧，这是我听过最棒的一门数学课程！如果早点听了这门课，大学线代竞赛也不至于是二等奖了吧？哈哈哈哈</p>
-<p>幸运的是，我在网上也看到一篇很有内味儿的<a href="http://blog.codinglabs.org/articles/pca-tutorial.html" target="_blank" rel="noopener">PCA</a>文章，对PCA的概念有点模糊时，我就拿来看一下。这一次，我结合这篇文章，尝试以一个更通俗的方式来阐述PCA的工作原理。从我们非常熟悉的考试成绩入手吧，请看下面我伪造的一个班级学生的期中考试成绩单：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>学生ID</th>
-<th>语文</th>
-<th>数学</th>
-<th>英语</th>
-<th>物理</th>
-<th>化学</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>90</td>
-<td>143</td>
-<td>111</td>
-<td>92</td>
-<td>78</td>
-</tr>
-<tr>
-<td>2</td>
-<td>90</td>
-<td>110</td>
-<td>123</td>
-<td>81</td>
-<td>88</td>
-</tr>
-<tr>
-<td>3</td>
-<td>90</td>
-<td>82</td>
-<td>108</td>
-<td>55</td>
-<td>85</td>
-</tr>
-<tr>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-<td>…</td>
-</tr>
-<tr>
-<td>m</td>
-<td>90</td>
-<td>128</td>
-<td>99</td>
-<td>85</td>
-<td>63</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>仅仅根据这份数据，如果让你预测下这些学生期末考试的成绩排名，你怎么做？一个常见的思路是直接把这些学生的期中考试成绩加起来，用期中的考试成绩排名直接作为期末成绩排名的预测。没毛病，这是时间序列分析的一个基本思想。但是有必要把这些成绩都加起来吗？这还仅仅是一个五维的数据，也仅仅通过一个“加法”算法，所以对计算机的存储或者算法的运行效率并没有影响。但如果是成千上万，甚至上亿维的数据，需要矩阵运算、梯度等复杂运算的算法时，计算机还能hold住吗？</p>
-<p>这时候降维就非常有必要了，观察上面的成绩数据，我们发现所有人的语文成绩竟然都是90分！那么语文成绩对我们预测期末成绩排名就没有任何用处了，对算法来说，这是完全冗余的信息，可以将这个特征直接剔除！再者，我们也很容易发现数学成绩和物理成绩是比较相关的，那么预测期末考试的成绩排名有必要直到这两门课的成绩呢？好像也没必要，知道一门或者把两门成绩组合成一门就行了。通过这么一处理，我们是不是已经把5维特征变成3维特征了？语文成绩的处理方法是一种叫着方差分析的特征选择方法，而物理成绩和数学成绩合并成一个特征就是我们要说的PCA了！</p>
-<p>那么PCA是怎么将物理成绩和数学成绩组合成一个特征？这其中又有多少信息损失呢？如何度量损失信息的多少呢？</p>
-<p>这个算法的学习，我也是反反复复，经历了很长时间。我对PCA的理解，主要基于这篇文章，既</p>
-<h2 id="PCA-知其然知其所以然"><a href="#PCA-知其然知其所以然" class="headerlink" title="PCA 知其然知其所以然"></a>PCA 知其然知其所以然</h2><p>PCA从本质上来说是通过线性变换将原始数据变换为一组各维度线性无关的表示，这些线性无关的表示即为原始数据的主要特征分量。</p>
-<p>PCA的损失函数可以概述为：找出能够最小化投影距离的方式。</p>
-<p>这个和支持向量机有什么不同呢？支持向量机只计算距离支撑向量最近的点，而PCA是计算所有的点</p>
-<h2 id="PCA-Q-amp-A"><a href="#PCA-Q-amp-A" class="headerlink" title="PCA Q&amp;A"></a>PCA Q&amp;A</h2><p><strong>Q1:</strong> PCA、线性回归、支持向量机区别在哪里？</p>
-<p><strong>A1：</strong>首先，PCA是一种无监督学习算法，通常用于数据预处理，而线性回归和支持向量机是有监督学习算法，通常用于预测；其次，PCA的损失函数是最小化所有数据点到投影面的投影距离（点垂直于投影面），线性回归的损失函数是最小化所有数据点到决策边界的平方误差（点不垂直于决策面），至于支持向量机，它的损失函数只计算距离支撑向量最近点的损失</p>
-<p><strong>Q2:</strong> 在使用PCA算法有什么需要注意的吗？</p>
-<p><strong>A2:</strong> 在进行PCA之前，一定不要忘记进行特征缩放/均值标准化</p>
-<h2 id="PCA脑洞"><a href="#PCA脑洞" class="headerlink" title="PCA脑洞"></a>PCA脑洞</h2><ul>
-<li>高维数据探索和可视化</li>
-<li>数据预处理</li>
+    <title>csv格式转FFM格式方法汇总</title>
+    <url>/posts/xlearn_ffm.html</url>
+    <content><![CDATA[<ul>
+<li><a href="https://blog.csdn.net/songbinxu/article/details/80298195" target="_blank" rel="noopener">多线程实现</a></li>
+<li></li>
 </ul>
-<p>算法工程师有必要推导算法吗</p>
-<p>算法工具包，就如屠龙宝刀一样，有的人拿它切菜，有的人拿它称霸武林，而有的人却”毁”了它，拿到了《武穆遗书》，统兵百万！</p>
-<p>个不懂算法原理的调包侠就像一个</p>
-<p>明白算法原理的算法工程师更像一个有经验的医生</p>
+]]></content>
+      <categories>
+        <category>数据处理</category>
+      </categories>
+      <tags>
+        <tag>xlearn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python|命令行参数argv、argparse和getopt使用</title>
+    <url>/posts/commandline.html</url>
+    <content><![CDATA[<p>python作为一门胶水语言，和其它语言交互或者从程序外部获取参数是非常频繁的。经常使用的有input、sys.argv、argparse和getopt等。它们的使用方法及场景总结如下。</p>
+<h2 id="input"><a href="#input" class="headerlink" title="input"></a>input</h2><p>最简单且直接的一个从程序外部捕获参数的一个函数。输入形式如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">input(prompt=<span class="literal">None</span>,/) <span class="comment"># 第一个参数是提示语，默认是空的;使用input的时候，会从标准输入中读取一个string,以换行作为结束标志</span></span><br></pre></td></tr></table></figure>
+<p><strong>优点：</strong> 简单、使用方便</p>
+<p><strong>缺点</strong>：只能输入str型，不易和其它程序交互，一般人工输入数据测试</p>
+<h2 id="sys-argv"><a href="#sys-argv" class="headerlink" title="sys.argv"></a>sys.argv</h2><p> sys.argv 是获取运行python文件的时候命令行参数，且以list形式存储参数，参数之间以空格隔开。 sys.argv[0] 代表当前module的名字。同样的，默认为只能输入str型，需要在程序内部进一步处理为其他类型</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="comment"># method1</span></span><br><span class="line">lists = sys.argv</span><br><span class="line">print(int(a[<span class="number">1</span>])+int(a[<span class="number">2</span>]))</span><br><span class="line"><span class="comment"># method2</span></span><br><span class="line">a = sys.argv[<span class="number">1</span>]</span><br><span class="line">b = sys.argv[<span class="number">2</span>]</span><br><span class="line">print(int(a)+int(b))</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong> 工作中，经常遇到直接传进一个json格式的数据，json中又有多种类型的数据【感觉这种交互方式有点问题】，比如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">[&#123;<span class="string">"xsetz"</span>:<span class="number">0.0</span>,<span class="string">"dialysis"</span>:<span class="number">0.0</span>,<span class="string">"sex"</span>:<span class="string">"男 "</span>,<span class="string">"zdcode"</span>:<span class="string">"a00.000x001"</span>,<span class="string">"pid"</span>:<span class="string">"00145208KHYY"</span>,<span class="string">"sscode"</span>:<span class="string">"96.0400"</span>,<span class="string">"cyzg"</span>:<span class="number">0</span>,<span class="string">"breakstone"</span>:<span class="number">0.0</span>,<span class="string">"czdcode"</span>:[<span class="string">"a05.200x002"</span>,<span class="string">"t17.500"</span>],<span class="string">"ercp"</span>:<span class="number">0.0</span>,<span class="string">"csscode"</span>:[<span class="string">"96.7101"</span>,<span class="string">"96.6x02"</span>,<span class="string">"33.9302"</span>,<span class="string">"34.0401"</span>]&#125;]</span><br></pre></td></tr></table></figure>
+<p>这种在window下，执行json.loads会报错，但是在linux下是正常的，具体案例见这篇<a href="https://blog.csdn.net/KKKun_Joe/article/details/98877283" target="_blank" rel="noopener">文章</a> 。 另外，由于该命令行参数默认将json转化为str，所以在程序中如果正对json格式进行处理，还需要将str转化为json，常用的3种转化方法见这篇<a href="https://www.cnblogs.com/lisa2016/p/11944453.html" target="_blank" rel="noopener">文章1</a>, <a href="https://blog.csdn.net/u011416077/article/details/49407047" target="_blank" rel="noopener">文章2demjson</a></p>
+<h2 id="argparse"><a href="#argparse" class="headerlink" title="argparse"></a>argparse</h2><p>这是python自带的一个库，比较灵活。编写交互性强的代码时建议使用。argparse设计理念同linux中的各种命令行一致。命令行参数常用的4类功能。</p>
+<ul>
+<li>默认情况下执行一定的功能。类似 linux中的 ls</li>
+<li>使用位置参数实现一定的功能，类似linux中的 cp SRC DEST 第一个位置参数指的是<em>你想要复制的\</em>，第二个位置参数指的是<em>你想要复制到的位置</em></li>
+<li>使用可选参数执行一定的功能。比如linux中的 ls -l 查看更详细的文件信息</li>
+<li>显示帮助文档。当你遇到一个你从未使用过的程序时，你可以通过阅读它的帮助文档来弄清楚它是如何运行的</li>
+</ul>
+<p>直接通过一个典型案例说明argparse的用法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"></span><br><span class="line">parser = argparse.ArgumentParser(description=<span class="string">"calculate X to the power of Y"</span>)</span><br><span class="line">parser.add_argument(<span class="string">"x"</span>, type=int, help=<span class="string">"the base"</span>)<span class="comment"># x 是必选参数</span></span><br><span class="line">parser.add_argument(<span class="string">"y"</span>, type=int, help=<span class="string">"the exponent"</span>)</span><br><span class="line">args = parser.parse_args()</span><br><span class="line">answer = args.x**args.y</span><br><span class="line">print(answer)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可选参数</span></span><br><span class="line">parser.add_argument(<span class="string">"-v"</span>, <span class="string">"--verbosity"</span>, type=int, choices=[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>], default=<span class="number">1</span>,</span><br><span class="line">                    help=<span class="string">"increase output verbosity"</span>)</span><br><span class="line"><span class="keyword">if</span> args.verbosity:<span class="comment"># 如果一个可选参数没有被使用时，相关变量被赋值为 None，使用时，必须指定一个值</span></span><br><span class="line">        <span class="keyword">print</span> (<span class="string">"verbosity turned on"</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>重点参数说明</strong></p>
+<ul>
+<li><p><code>add_argument()</code> ，该方法用于指定程序能够接受哪些命令行选项</p>
+</li>
+<li><p>action=”store_true”， 当可选参数存在时，该可选参数赋值为True，没有指定时隐含为False</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">parser.add_argument(<span class="string">"-v"</span>, <span class="string">"--verbosity"</span>,</span><br><span class="line">            help=<span class="string">"increase output verbosity"</span>,action=<span class="string">"store_true"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="参考及关联资料"><a href="#参考及关联资料" class="headerlink" title="参考及关联资料"></a>参考及关联资料</h2><ul>
+<li><a href="https://blog.csdn.net/weixin_44409630/article/details/93074115" target="_blank" rel="noopener">python配置文件</a></li>
+<li></li>
+</ul>
+]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>command line</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>推荐系统学习</title>
+    <url>/posts/2874669453.html</url>
+    <content><![CDATA[<h1 id="推荐系统学习"><a href="#推荐系统学习" class="headerlink" title="推荐系统学习"></a>推荐系统学习</h1><ul>
+<li>协同过滤（collaborative filtering）<ul>
+<li>user-based</li>
+<li>item-based</li>
+</ul>
+</li>
+<li>基于内容 (content-based filtering)</li>
+</ul>
+<p><strong>隐式反馈与显示反馈</strong></p>
+<p>推荐系统中用户对物品的反馈分为显<strong>式</strong>和隐<strong>式</strong>反馈，显<strong>式</strong>反馈 (如评分、评级) 或单一的隐<strong>式</strong>反馈 (如浏览、点击、加入购物车)。</p>
+<h2 id="python-libmf"><a href="#python-libmf" class="headerlink" title="python-libmf"></a><a href="https://github.com/PorkShoulderHolder/python-libmf" target="_blank" rel="noopener">python-libmf</a></h2><h2 id="Surprise"><a href="#Surprise" class="headerlink" title="Surprise"></a><a href="https://surprise.readthedocs.io/en/stable/getting_started.html" target="_blank" rel="noopener">Surprise</a></h2><h2 id="LightFM"><a href="#LightFM" class="headerlink" title="LightFM"></a><a href="https://making.lyst.com/lightfm/docs/home.html" target="_blank" rel="noopener">LightFM</a></h2><h2 id="xlearn"><a href="#xlearn" class="headerlink" title="xlearn"></a><a href="https://xlearn-doc-cn.readthedocs.io/en/latest/index.html" target="_blank" rel="noopener">xlearn</a></h2><h2 id="fastFM"><a href="#fastFM" class="headerlink" title="fastFM"></a><a href="https://www.biaodianfu.com/fastfm.html" target="_blank" rel="noopener">fastFM</a></h2><p>如果你是 liblinear、libfm、libffm 的用户，那么现在 xLearn 将会是你更好的选择，因为 xLearn 几乎囊括了这些系统的全部功能，并且具有更好的性能，易用性，以及可扩展性。</p>
+<h2 id="crab-作者应该不维护了-9年没更新"><a href="#crab-作者应该不维护了-9年没更新" class="headerlink" title="crab (作者应该不维护了 9年没更新)"></a>crab (作者应该不维护了 9年没更新)</h2><p>crab目前仅提供协同过滤算法。常见的有以下功能模块</p>
+<ul>
+<li><strong>MatrixPreferenceDataModel</strong>  implementation stores and provides access to all the user and item data as also the associated preferences needed in the computation.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> scikits.crab.models <span class="keyword">import</span> MatrixPreferenceDataModel</span><br><span class="line"><span class="comment">#Build the model</span></span><br><span class="line">model = MatrixPreferenceDataModel(movies.data)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>UserSimilarity</strong> defines the notion of how similar two users are;It is based on one of many possible metrics or pairwise distance calculations.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> scikits.crab.metrics <span class="keyword">import</span> pearson_correlation</span><br><span class="line"><span class="keyword">from</span> scikits.crab.similarities <span class="keyword">import</span> UserSimilarity</span><br><span class="line"> <span class="comment">#Build the similarity</span></span><br><span class="line">similarity = UserSimilarity(model, pearson_correlation)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>NearestNeighborhood</strong>  implementation defines the notion of a group of users that are most similar to a given user. At least, the UserBasedRecommender implementation pulls all these components together in order to recommend items to users, and related features. </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> crab.recommenders.knn <span class="keyword">import</span> UserBasedRecommender</span><br><span class="line"><span class="comment">#Build the User based recommender</span></span><br><span class="line">recommender = UserBasedRecommender(model, similarity, with_preference=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment">#Recommend items for the user 5 (Toby)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>recommender.recommend(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><p><a href="https://blog.csdn.net/vincent2610/article/details/52518237" target="_blank" rel="noopener">crab安装</a></p>
+</li>
+<li><p><a href="https://github.com/hexiangnan/neural_collaborative_filtering" target="_blank" rel="noopener">神经网络在协同过滤中的应用</a></p>
+</li>
+<li><a href="https://tracholar.github.io/machine-learning/2017/03/10/factorization-machine.html#%E7%BB%BC%E8%BF%B0" target="_blank" rel="noopener">因子分解机深入解析</a> <a href="https://tech.meituan.com/2016/03/03/deep-understanding-of-ffm-principles-and-practices.html" target="_blank" rel="noopener">meituan</a> </li>
+<li><a href="https://blog.csdn.net/zynash2/article/details/79348540" target="_blank" rel="noopener">DeepFM for CTR</a> <a href="https://github.com/ChenglongChen/tensorflow-DeepFM" target="_blank" rel="noopener">https://github.com/ChenglongChen/tensorflow-DeepFM</a></li>
+<li></li>
+</ul>
 ]]></content>
       <categories>
         <category>uncategorized</category>
       </categories>
+  </entry>
+  <entry>
+    <title>机器学习|异常检测</title>
+    <url>/posts/ML_anomaly_detection.html</url>
+    <content><![CDATA[<ol>
+<li>特征数量变多，p(x) 就变的很小 这个不影响算法最终的判断 主要取决于 $\varepsilon$ 阈值大小。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
       <tags>
-        <tag>PCA</tag>
+        <tag>异常检测</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>机器学习|推荐系统</title>
+    <url>/posts/ML_rs.html</url>
+    <content><![CDATA[<p>突然意识到，基于内容的推荐，其实就是常见的预测问题啊！利用特征，将概率大的推荐给合适的人，相当于于给每个人建立一个预测系统。</p>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>推荐系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算法|模糊匹配算法简单介绍</title>
+    <url>/posts/fuzzy_algorithm.html</url>
+    <content><![CDATA[<h2 id="FuzzyWuzzy"><a href="#FuzzyWuzzy" class="headerlink" title="FuzzyWuzzy"></a>FuzzyWuzzy</h2><p> <a href="https://github.com/seatgeek/fuzzywuzzy" target="_blank" rel="noopener">FuzzyWuzzy</a>是一个第三方Python库，使用编辑距离（Levenshtein Distance）来计算序列之间的差异。目前是github上最流行的一个开源库，有各种语言版本。主要提供4中模糊匹配方法。</p>
+<p>difflib python自带，感觉功能不够强大，没有仔细研究。</p>
+<p><a href="https://github.com/ztane/python-Levenshtein/" target="_blank" rel="noopener">python-levenshtein</a> 可以快速计算编辑距离及字符串的相似性。FuzzyWuzzy中的编辑距离便是基于该模块计算。</p>
+<ul>
+<li><p>编辑距离：把一个字符串通过插入、删除或替换为另一个字符串，所需要的最少<strong>编辑次数</strong>。汉明距离是该距离的特例（等长）</p>
+<ul>
+<li><strong>Levenshtein.distance(str1, str2)</strong> 由一个字串转化成另一个字串最少的操作次数，在其中的操作包括插入、删除、替换, 每个操作计为1；</li>
+<li><strong>Levenshtein.ratio(str1, str2)</strong>  计算莱文斯坦比。 $r = \frac{sum-Ldist}{sum}$ ,其中sum是指str1 和 str2 字串的长度总和，ldist是<strong>类编辑距离</strong>, 其中 删除、插入类编辑距离记为+1，但是替换记为+2</li>
+<li><strong>Levenshtein.jaro(s1, s2)</strong> </li>
+<li><strong><a href="https://blog.csdn.net/frone/article/details/80080850" target="_blank" rel="noopener">Levenshtein.jaro_winkler(s1, s2)</a></strong>  有个专门的工具包jaro_winkler</li>
+</ul>
+</li>
+<li><p>Jaccard 距离</p>
+</li>
+<li>J-W距离</li>
+<li>余弦相似性 <a href="https://www.cnblogs.com/lishanyang/p/6016737.html" target="_blank" rel="noopener">https://www.cnblogs.com/lishanyang/p/6016737.html</a></li>
+<li>欧氏距离</li>
+</ul>
+<h2 id="应用实战"><a href="#应用实战" class="headerlink" title="应用实战"></a>应用实战</h2><p>直接安装FuzzyWuzzy，然后import时会有警告，提示安装python-levenshtein，这样可以加速算法。另外，这也扩展了FuzzyWuzzy的功能。比如process.extract()这个API， 我们 help(process.extract), 可知其接受5个参数，分别是：query,choices,processor,scorer,limit.  scorer默认使用fuzz.WRatio计算相似度，但是这并不一定是一个有效的相似度计算方法，我们可以通过使用python-levenshtein的一些方法进行计算</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">process.extractOne(<span class="string">'b02.200'</span>, [<span class="string">'a02.200'</span>,<span class="string">'b02.210'</span>,<span class="string">'b02.201'</span>],scorer=Levenshtein.jaro_winkler)</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/lys_828/article/details/106489371" target="_blank" rel="noopener">fuzzyWuzzy实战</a></p>
+<p><a href="https://blog.csdn.net/qq_22235017/article/details/80989366" target="_blank" rel="noopener">很有启发意义的中医数据编辑距离</a></p>
+<p><a href="https://www.jianshu.com/p/2daf3e57c68f" target="_blank" rel="noopener">fuzzyWuzzy</a></p>
+<p><a href="https://www.cnblogs.com/-wenli/p/11079173.html" target="_blank" rel="noopener">比较详细的一个中文介绍</a></p>
+<p><a href="https://blog.csdn.net/a2099948768/article/details/82219923" target="_blank" rel="noopener">Levenshtein API 比较详细的介绍</a></p>
+<p><a href="https://blog.csdn.net/shijing_0214/article/details/53100992" target="_blank" rel="noopener">各种字符串相似度计算</a></p>
+<p><a href="https://blog.csdn.net/qq_32447301/article/details/107269350" target="_blank" rel="noopener">java 版模糊匹配</a></p>
+<p>best fuzzywuzzy alternatives</p>
+<p><a href="https://zhuanlan.zhihu.com/p/30603995" target="_blank" rel="noopener">python文本自动摘要</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/45833152" target="_blank" rel="noopener">三行Python代码，让数据预处理速度提高2到6倍</a></p>
+<p><a href="https://help.alteryx.com/zh/current/designer/yonghujiemian" target="_blank" rel="noopener">一个模糊匹配工具</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/109016233" target="_blank" rel="noopener">python代码小技巧</a> <a href="https://zhuanlan.zhihu.com/p/135341571" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/135341571</a> </p>
+<p><a href="https://zhuanlan.zhihu.com/p/144875646" target="_blank" rel="noopener">python一些有趣的工具</a> <a href="https://www.codercto.com/a/115354.html" target="_blank" rel="noopener">https://www.codercto.com/a/115354.html</a></p>
+<p>豆瓣原真香 pip install -i <a href="https://pypi.douban.com/simple" target="_blank" rel="noopener">https://pypi.douban.com/simple</a> texthero</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>模糊匹配</tag>
+        <tag>FuzzyWuzzy</tag>
+        <tag>levenshtein</tag>
       </tags>
   </entry>
   <entry>
@@ -202,43 +279,103 @@
       </tags>
   </entry>
   <entry>
-    <title>python|命令行参数argv、argparse和getopt使用</title>
-    <url>/posts/commandline.html</url>
-    <content><![CDATA[<p>python作为一门胶水语言，和其它语言交互或者从程序外部获取参数是非常频繁的。经常使用的有input、sys.argv、argparse和getopt等。它们的使用方法及场景总结如下。</p>
-<h2 id="input"><a href="#input" class="headerlink" title="input"></a>input</h2><p>最简单且直接的一个从程序外部捕获参数的一个函数。输入形式如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">input(prompt=<span class="literal">None</span>,/) <span class="comment"># 第一个参数是提示语，默认是空的;使用input的时候，会从标准输入中读取一个string,以换行作为结束标志</span></span><br></pre></td></tr></table></figure>
-<p><strong>优点：</strong> 简单、使用方便</p>
-<p><strong>缺点</strong>：只能输入str型，不易和其它程序交互，一般人工输入数据测试</p>
-<h2 id="sys-argv"><a href="#sys-argv" class="headerlink" title="sys.argv"></a>sys.argv</h2><p> sys.argv 是获取运行python文件的时候命令行参数，且以list形式存储参数，参数之间以空格隔开。 sys.argv[0] 代表当前module的名字。同样的，默认为只能输入str型，需要在程序内部进一步处理为其他类型</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="comment"># method1</span></span><br><span class="line">lists = sys.argv</span><br><span class="line">print(int(a[<span class="number">1</span>])+int(a[<span class="number">2</span>]))</span><br><span class="line"><span class="comment"># method2</span></span><br><span class="line">a = sys.argv[<span class="number">1</span>]</span><br><span class="line">b = sys.argv[<span class="number">2</span>]</span><br><span class="line">print(int(a)+int(b))</span><br></pre></td></tr></table></figure>
-<p><strong>注意</strong> 工作中，经常遇到直接传进一个json格式的数据，json中又有多种类型的数据【感觉这种交互方式有点问题】，比如：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">[&#123;<span class="string">"xsetz"</span>:<span class="number">0.0</span>,<span class="string">"dialysis"</span>:<span class="number">0.0</span>,<span class="string">"sex"</span>:<span class="string">"男 "</span>,<span class="string">"zdcode"</span>:<span class="string">"a00.000x001"</span>,<span class="string">"pid"</span>:<span class="string">"00145208KHYY"</span>,<span class="string">"sscode"</span>:<span class="string">"96.0400"</span>,<span class="string">"cyzg"</span>:<span class="number">0</span>,<span class="string">"breakstone"</span>:<span class="number">0.0</span>,<span class="string">"czdcode"</span>:[<span class="string">"a05.200x002"</span>,<span class="string">"t17.500"</span>],<span class="string">"ercp"</span>:<span class="number">0.0</span>,<span class="string">"csscode"</span>:[<span class="string">"96.7101"</span>,<span class="string">"96.6x02"</span>,<span class="string">"33.9302"</span>,<span class="string">"34.0401"</span>]&#125;]</span><br></pre></td></tr></table></figure>
-<p>这种在window下，执行json.loads会报错，但是在linux下是正常的，具体案例见这篇<a href="https://blog.csdn.net/KKKun_Joe/article/details/98877283" target="_blank" rel="noopener">文章</a> 。 另外，由于该命令行参数默认将json转化为str，所以在程序中如果正对json格式进行处理，还需要将str转化为json，常用的3种转化方法见这篇<a href="https://www.cnblogs.com/lisa2016/p/11944453.html" target="_blank" rel="noopener">文章1</a>, <a href="https://blog.csdn.net/u011416077/article/details/49407047" target="_blank" rel="noopener">文章2demjson</a></p>
-<h2 id="argparse"><a href="#argparse" class="headerlink" title="argparse"></a>argparse</h2><p>这是python自带的一个库，比较灵活。编写交互性强的代码时建议使用。argparse设计理念同linux中的各种命令行一致。命令行参数常用的4类功能。</p>
-<ul>
-<li>默认情况下执行一定的功能。类似 linux中的 ls</li>
-<li>使用位置参数实现一定的功能，类似linux中的 cp SRC DEST 第一个位置参数指的是<em>你想要复制的\</em>，第二个位置参数指的是<em>你想要复制到的位置</em></li>
-<li>使用可选参数执行一定的功能。比如linux中的 ls -l 查看更详细的文件信息</li>
-<li>显示帮助文档。当你遇到一个你从未使用过的程序时，你可以通过阅读它的帮助文档来弄清楚它是如何运行的</li>
+    <title>机器学习|降维之主成分分析（PCA）</title>
+    <url>/posts/pca.html</url>
+    <content><![CDATA[<p>在这个大数据时代，我们能采集到成千上万的特征数据，甚至通过特征工程构建更多的特征数据，这时候数据压缩就显的非常有必要了。压缩后的数据可以占用更少的计算机内存或磁盘空间，同时也有利于加速学习算法，甚至有利于可视化，增强可解释性。</p>
+<p>降维，顾名思义：就是将高维数据降到低维。但是，维度降低了，信息不也损失了吗（虽然实际数据本身常常存在的相关性）？那么怎么才能让信息损失的尽可能少呢？甚至是剔除冗余信息，精炼我们的数据呢？主成分分析（Principal Component Analysis，PCA）便应用而生了：PCA把具有可能具有相关性的高维变量合成线性无关的低维向量，称为主成分。新的低维数据集会尽可能的保留原始数据的变量。</p>
+<h2 id="白话PCA-鱼和熊掌可以兼得吗"><a href="#白话PCA-鱼和熊掌可以兼得吗" class="headerlink" title="白话PCA - 鱼和熊掌可以兼得吗"></a>白话PCA - 鱼和熊掌可以兼得吗</h2><p>PCA相比于其它的算法，涉及到的数学知识还是蛮多的。网上关于PCA的文章虽然有很多，但数学味儿太浓了（还是陡峭的高等数学），一般人理解起来还是很困难的。但是数学就不能一种更好的方式呈现出来吗？那你一定没看过<a href="https://space.bilibili.com/88461692/channel/detail?cid=9450" target="_blank" rel="noopener">3Blue1Brown</a> 的线性代数课程吧？去看看吧，这是我听过最棒的一门数学课程！如果早点听了这门课，大学线代竞赛也不至于是二等奖了吧？哈哈哈哈</p>
+<p>幸运的是，我在网上也看到一篇很有内味儿的<a href="http://blog.codinglabs.org/articles/pca-tutorial.html" target="_blank" rel="noopener">PCA</a>文章，对PCA的概念有点模糊时，我就拿来看一下。这一次，我结合这篇文章，尝试以一个更通俗的方式来阐述PCA的工作原理。从我们非常熟悉的考试成绩入手吧，请看下面我伪造的一个班级学生的期中考试成绩单：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>学生ID</th>
+<th>语文</th>
+<th>数学</th>
+<th>英语</th>
+<th>物理</th>
+<th>化学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>90</td>
+<td>143</td>
+<td>111</td>
+<td>92</td>
+<td>78</td>
+</tr>
+<tr>
+<td>2</td>
+<td>90</td>
+<td>110</td>
+<td>123</td>
+<td>81</td>
+<td>88</td>
+</tr>
+<tr>
+<td>3</td>
+<td>90</td>
+<td>82</td>
+<td>108</td>
+<td>55</td>
+<td>85</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>m</td>
+<td>90</td>
+<td>128</td>
+<td>99</td>
+<td>85</td>
+<td>63</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>仅仅根据这份数据，如果让你预测下这些学生期末考试的成绩排名，你怎么做？一个常见的思路是直接把这些学生的期中考试成绩加起来，用期中的考试成绩排名直接作为期末成绩排名的预测。没毛病，这是时间序列分析的一个基本思想。但是有必要把这些成绩都加起来吗？这还仅仅是一个五维的数据，也仅仅通过一个“加法”算法，所以对计算机的存储或者算法的运行效率并没有影响。但如果是成千上万，甚至上亿维的数据，需要矩阵运算、梯度等复杂运算的算法时，计算机还能hold住吗？</p>
+<p>这时候降维就非常有必要了，观察上面的成绩数据，我们发现所有人的语文成绩竟然都是90分！那么语文成绩对我们预测期末成绩排名就没有任何用处了，对算法来说，这是完全冗余的信息，可以将这个特征直接剔除！再者，我们也很容易发现数学成绩和物理成绩是比较相关的，那么预测期末考试的成绩排名有必要直到这两门课的成绩呢？好像也没必要，知道一门或者把两门成绩组合成一门就行了。通过这么一处理，我们是不是已经把5维特征变成3维特征了？语文成绩的处理方法是一种叫着方差分析的特征选择方法，而物理成绩和数学成绩合并成一个特征就是我们要说的PCA了！</p>
+<p>那么PCA是怎么将物理成绩和数学成绩组合成一个特征？这其中又有多少信息损失呢？如何度量损失信息的多少呢？</p>
+<p>先看一个简单的例子，如何将下面这个二维数据将为一维呢？我们可以直接将这些数据都投影到 $x$ 轴或者都投影到 $y$ 轴：投影到 $x$ 轴，最左边的2个点和中间的2个点都重叠在一起，这样在二维空间中4个各不相同的点降到一维空间只剩下2个不同的值了，这是一种严重的信息丢失；同样，如果映射到 $y$ 轴，最上面的2个点和中间的2个点也都重叠在一起。因此，$x$ 轴或者 $y$ 轴都不是一个好的选择。直观目测，如果向通过第一象限和第三象限的斜线投影，则五个点在投影后还是可以区分的。</p>
+<p><del>直观上理解：我们应该让降维后的数据尽量不要重合，互相隔的越远越好，这样才能保持信息尽量少的损失</del></p>
+<p><img src="https://wx4.sinaimg.cn/mw690/a6facf89ly1ggziebcv3hj20kb0ip0t3.jpg" alt="pca" style="zoom:67%;" /></p>
+<p>PCA可以这样简单的理解：</p>
+<p><del>这个算法的学习，我也是反反复复，经历了很长时间。我对PCA的理解，主要基于这篇文章，既</del></p>
+<h2 id="PCA-知其然知其所以然"><a href="#PCA-知其然知其所以然" class="headerlink" title="PCA 知其然知其所以然"></a>PCA 知其然知其所以然</h2><p>PCA从本质上来说是通过线性变换将原始数据变换为一组<strong>各维度线性无关</strong>的表示，这些线性无关的表示即为原始数据的主要特征分量。</p>
+<p>线性变换，可以将数据从一个空间（记为A空间）映射到另一个空间（记为B空间）。不同空间中的数据可以通过基和坐标唯一确定。如果PCA要实现降维，则线性变换后，基必须降低。所以线性变换的目的就是降维，那么这个线性变换如何表示呢？如果你看了<a href="https://space.bilibili.com/88461692/channel/detail?cid=9450" target="_blank" rel="noopener">3Blue1Brown</a> 的视频，很容易想到矩阵。在下图中黑色坐标系下 (基为(1,0)和(0,1))，向量 $\vec{p}$ 可表示为  $\vec{p}=(3,2 )$ , 那么向量 $\vec{p}$ 在蓝色坐标系下（基为(1,1)和(-1,1)）如何表示呢？其实这就是一种线性变换，将数据从一个空间变换到另一个空间，这可以通过矩阵获得（左边的矩阵是经过单位化的基矩阵）：</p>
+<p>$\left[ \begin{matrix} \frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}} \end{matrix} \right]$$\left[ \begin{matrix} 3 \\ 2 \end{matrix} \right]$ = $\left[ \begin{matrix} \frac{5}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}} \end{matrix} \right]$   </p>
+<p>该矩阵相乘的物理含义可这样理解：用B空间的基矩阵左乘A空间的数据点的向量表示即可获得该数据点在B空间的向量表示。所以变换后的向量 $\vec{p}$ 可表示为 $\vec{p}=(\frac{5}{\sqrt{2}},-\frac{1}{\sqrt{2}} )$ 。</p>
+<p><img src="https://wx4.sinaimg.cn/mw690/a6facf89ly1ggyunjwgxkj20g10f8q3o.jpg" alt="base" style="zoom:80%;" /></p>
+<p>如果想让线性变换后的维度降低，那么应该让基矩阵的维度降低。一般地，<strong>如果有M个N维向量，想将其变换为由R个N维向量表示的新空间中，那么首先将R个基按行组成矩阵A，然后将向量按列组成矩阵B，那么两矩阵的乘积AB就是变换结果，其中AB的第m列为A中第m列变换后的结果</strong> 。</p>
+<p>那么这个基矩阵如何选择呢？一个合适的基矩阵除了能降低原始数据的维度，还应该保证降维后损失的信息应该尽量少。如果要保证损失的信息尽量少，至少降维后的数据不能重合，如果能相互之间距离较远（数据点比较分散）</p>
+<p>PCA的损失函数可以概述为：找出能够最小化投影距离的方式。</p>
+<p>这个和支持向量机有什么不同呢？支持向量机只计算距离支撑向量最近的点，而PCA是计算所有的点</p>
+<h2 id="PCA-Q-amp-A"><a href="#PCA-Q-amp-A" class="headerlink" title="PCA Q&amp;A"></a>PCA Q&amp;A</h2><p><strong>Q1:</strong> PCA、线性回归、支持向量机区别在哪里？</p>
+<p><strong>A1：</strong>首先，PCA是一种无监督学习算法，通常用于数据预处理，而线性回归和支持向量机是有监督学习算法，通常用于预测；其次，PCA的损失函数是最小化所有数据点到投影面的投影距离（点垂直于投影面），线性回归的损失函数是最小化所有数据点到决策边界的平方误差（点不垂直于决策面），至于支持向量机，它的损失函数只计算距离支撑向量最近点的损失</p>
+<p><strong>Q2:</strong> 在使用PCA算法有什么需要注意的吗？</p>
+<p><strong>A2:</strong> 在进行PCA之前，一定不要忘记进行特征缩放/均值标准化</p>
+<h2 id="PCA脑洞"><a href="#PCA脑洞" class="headerlink" title="PCA脑洞"></a>PCA脑洞</h2><ul>
+<li>高维数据探索和可视化</li>
+<li>数据预处理</li>
 </ul>
-<p>直接通过一个典型案例说明argparse的用法</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"></span><br><span class="line">parser = argparse.ArgumentParser(description=<span class="string">"calculate X to the power of Y"</span>)</span><br><span class="line">parser.add_argument(<span class="string">"x"</span>, type=int, help=<span class="string">"the base"</span>)<span class="comment"># x 是必选参数</span></span><br><span class="line">parser.add_argument(<span class="string">"y"</span>, type=int, help=<span class="string">"the exponent"</span>)</span><br><span class="line">args = parser.parse_args()</span><br><span class="line">answer = args.x**args.y</span><br><span class="line">print(answer)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可选参数</span></span><br><span class="line">parser.add_argument(<span class="string">"-v"</span>, <span class="string">"--verbosity"</span>, type=int, choices=[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>], default=<span class="number">1</span>,</span><br><span class="line">                    help=<span class="string">"increase output verbosity"</span>,action=<span class="string">"store_true"</span>)</span><br><span class="line"><span class="keyword">if</span> args.verbosity:<span class="comment"># 如果一个可选参数没有被使用时，相关变量被赋值为 None，使用时，必须指定一个值</span></span><br><span class="line">        <span class="keyword">print</span> (<span class="string">"verbosity turned on"</span>)</span><br></pre></td></tr></table></figure>
-<p><strong>重点参数说明</strong></p>
-<ul>
-<li><code>add_argument()</code> ，该方法用于指定程序能够接受哪些命令行选项</li>
-<li>action=”store_true”， 当可选参数存在时，该可选参数赋值为True，没有指定时隐含为False</li>
-</ul>
-<h2 id="参考及关联资料"><a href="#参考及关联资料" class="headerlink" title="参考及关联资料"></a>参考及关联资料</h2><ul>
-<li><a href="https://blog.csdn.net/weixin_44409630/article/details/93074115" target="_blank" rel="noopener">python配置文件</a></li>
-<li></li>
-</ul>
+<p>算法工程师有必要推导算法吗</p>
+<p>算法工具包，就如屠龙宝刀一样，有的人拿它切菜，有的人拿它称霸武林，而有的人却”毁”了它，拿到了《武穆遗书》，统兵百万！</p>
+<p>一个不懂算法原理的调包侠就像一个</p>
+<p>明白算法原理的算法工程师更像一个有经验的医生</p>
 ]]></content>
       <categories>
-        <category>python</category>
+        <category>uncategorized</category>
       </categories>
       <tags>
-        <tag>python</tag>
-        <tag>command line</tag>
+        <tag>PCA</tag>
       </tags>
   </entry>
 </search>
